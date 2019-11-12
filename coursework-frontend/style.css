@@ -1,0 +1,16 @@
+header {
+    background: #8fcff7;
+    margin: 15px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-columns {
+    @include media-breakpoint-only(lg) {
+      column-count: 4;
+    }
+    @include media-breakpoint-only(xl) {
+      column-count: 5;
+    }
+  }

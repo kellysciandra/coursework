@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Homework</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+        <!-- <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow&display=swap" rel="stylesheet"> -->
+    </head>
+
+    <body>
+
+        <header class="header-banner">
+            <h3>
+                Progress
+                <small class="text-muted">please add to your list</small>
+            </h3>
+            <span class="logout"></span>
+        </header>
+        <div class="container">
+
+            <!-- <div id="signup-form">
+                <form>
+                    <h3>Sign Up or Login Here:</h3>
+                    <input type="text" name="email" value="" placeholder="Username" class="signup-input">
+                    <br>
+                    <input type="password" name="password" value="" placeholder="Password" class="signup-input">
+                    <br>
+                    <input type="submit" name="submit" value="Submit" class="submit">
+                </form>
+            </div> -->
+
+
+            <div id="new-courseload">
+                <form>
+                    <div class="new-courseload">
+                        <label for="exampleInputEmail1">Language</label>
+                        <input type="text" class="form-control" id="language-input" aria-describedby="language-input"
+                            placeholder="Language"><br>
+                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small> -->
+                        <label for="exampleInputEmail1">Framework</label>
+                        <input type="text" class="form-control" id="framework-input" aria-describedby="framework-input"
+                            placeholder="Framework"><br>
+                        <label for="exampleInputEmail1">General</label>
+                        <input type="text" class="form-control" id="general-input" aria-describedby="general-input"
+                            placeholder="General"><br>
+                        <label for="exampleInputEmail1">Link</label>
+                        <input type="text" class="form-control" id="link-input" aria-describedby="link-input"
+                            placeholder="Link"><br>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form><br>
+
+            </div>
+
+            <div id="courseload-container">
+
+            </div>
+
+            <div id="fav-collection">
+            </div>
+        </div>
+        <script src="src/courseload.js"></script>
+        <script src="src/courseloads.js"></script>
+        <script src="src/app.js"></script>
+        <script src="adapters/CourseloadAdapter.js"></script>
+        <script src="src/index.js"></script>
+    </body>
+
+</html>
