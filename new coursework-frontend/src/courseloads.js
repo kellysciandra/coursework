@@ -4,9 +4,7 @@ class Courseloads {
         this.framework = courseload.framework;
         this.general = courseload.general;
         this.link = courseload.link;
-
     }
-
     render() {
         return `<div contenteditable="true" class="card bg-light mb-3" style="max-width: 18rem;">
         <div class="card-header">${this.language}</div>
@@ -18,58 +16,6 @@ class Courseloads {
         </div>
       </div>`
     }
-
-    static postToCourseload() {
-
-        const courseloadForm = document.getElementById('new-courseload')
-        // const formInput = document.querySelectorAll('.form-control')
-        const language = document.getElementById('language-input')
-        const framework = document.getElementById('framework-input')
-        const general = document.getElementById('general-input')
-        const link = document.getElementById('link-input')
-
-
-        courseloadForm.addEventListener('submit', function (e) {
-            e.preventDefault(e)
-
-            fetch(`${COURSELOAD_URL}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json"
-                },
-                body: JSON.stringify({
-                    language: language.value,
-                    framework: framework.value,
-                    general: general.value,
-                    link: link.value
-                })
-            })
-                .then(res => console.log(res.json()))
-
-        })
-
-    }
-
-
-    static putCourseloadsOnDom(courseloadArray) {
-        const courseloads = []
-        const courseloadCollection = document.getElementById('courseload-collection')
-        // console.log(courseloadArray)
-        // console.log(courseloads)
-        courseloadArray.forEach(courseload => {
-            courseloadCollection.innerHTML += new Courseloads(courseload).render()
-        })
-        this.postToCourseload()
-    }
-
-
-    static fetchCourseloads() {
-        fetch(`${COURSELOAD_URL}`)
-            .then(res => res.json())
-            .then(courseloads => this.putCourseloadsOnDom(courseloads))
-    }
-
 
     static courseloadForm() {
         courseloadCollection.innerHTML = `<div id="new-courseload">
@@ -94,8 +40,65 @@ class Courseloads {
         this.fetchCourseloads()
     }
 
+    static fetchCourseloads() {
+        fetch(`${COURSELOAD_URL}`)
+            .then(res => res.json())
+            .then(courseloads => this.putCourseloadsOnDom(courseloads))
+    }
+
+    static putCourseloadsOnDom(json) {
+        const courseloads = []
+        const courseloadCollection = document.getElementById('courseload-collection')
+
+        json.forEach(courseload => {
+            courseloadCollection.innerHTML += new Courseloads(courseload).render()
+        })
+        this.postToCourseload()
+    }
+
+    static postToCourseload() {
+
+        const courseloadForm = document.getElementById('new-courseload')
+        const language = document.getElementById('language-input')
+        const framework = document.getElementById('framework-input')
+        const general = document.getElementById('general-input')
+        const link = document.getElementById('link-input')
+        const courseloadCollection = document.getElementById('courseload-collection')
+
+
+        courseloadForm.addEventListener('submit', function (e) {
+            e.preventDefault()
+            fetch(`${COURSELOAD_URL}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                },
+                body: JSON.stringify({
+                    language: language.value,
+                    framework: framework.value,
+                    general: general.value,
+                    link: link.value
+                })
+            }).then((response) => response.json())
+                .then((json) => {
+                    loadNewCourseload(json)
+                })
+        })
+    }
 }
 
+
+function loadNewCourseload(json) {
+    const courseloads = []
+    courseloads.push(new Courseloads(json))
+    const courseloadCollection = document.getElementById('courseload-collection')
+    courseloads.forEach(courseload => {
+        courseloadCollection.innerHTML += new Courseloads(courseload).render()
+    })
+    Courseloads.postToCourseload()
+    // Courseloads.fetchCourseloads()
+}
 
 
 
